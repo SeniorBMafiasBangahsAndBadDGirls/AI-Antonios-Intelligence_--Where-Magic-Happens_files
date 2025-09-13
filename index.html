@@ -625,7 +625,7 @@
                 const ext = file.name.split('.').pop().toLowerCase();
                 
                 let srcType = '';
-                if (ext === 'mp3' || ext === 'wav') srcType = 'audio/' + ext;
+                if (ext === 'mp4' || ext === 'wav') srcType = 'audio/' + ext;
                 else {
                     showMessage('Unsupported file type. Please upload an MP3 or WAV file.');
                     return;
