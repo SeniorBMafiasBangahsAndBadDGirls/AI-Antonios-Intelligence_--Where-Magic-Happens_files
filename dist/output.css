@@ -1,0 +1,54 @@
+/* Minimal fallback Tailwind-like output CSS (prebuilt) - small subset for layout and basic utilities */
+:root{--primary:#1f1b0a;--accent:#ffc400;--accent-dark:#a67c00}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial; background:var(--primary); color:#e0e0e0}
+.sidebar{background:rgba(60,50,20,.5);backdrop-filter:blur(10px);width:150px;height:100vh;overflow-y:auto;padding:1rem;border-left:2px solid #a67c00;position:fixed;right:0;top:0;z-index:10;transition:width .3s}
+.sidebar:hover{width:450px}
+.card{background:rgba(80,70,30,.7);border-radius:1rem;padding:1rem;margin-top:1rem;box-shadow:inset 0 2px 8px rgba(0,0,0,.2);border:1px solid #b58c00}
+.avatar{width:150px;height:150px;border-radius:50%;object-fit:cover;border:3px solid #e6b800}
+.dropzone{border:2px dashed rgba(255,196,0,.25);padding:.75rem;border-radius:.75rem}
+.hidden{display:none}
+.message-box{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#1e1e3f;color:#fff;padding:2rem;border-radius:1rem;z-index:1000}
+.video-js{margin:0 auto;border-radius:1rem;overflow:hidden;box-shadow:0 4px 15px rgba(0,0,0,.3);border:2px solid #b58c00}
+.badge{display:inline-block;padding:.25rem .75rem;border-radius:9999px;font-size:.75rem;font-weight:bold}
+/* utility */
+.camera-help a{color:var(--accent)}
+.camera-help p{margin:0}
+.camera-help ul{padding-left:1rem}
+.camera-help .card{background:rgba(40,40,40,.85)}
+.camera-icon{font-size:1.2rem}
+.text-center{text-align:center}
+.bg-gray-900\/60{background:rgba(20,20,20,0.6)}
+.rounded{border-radius:0.5rem}
+.flex{display:flex}
+.gap-2{gap:0.5rem}
+.mt-3{margin-top:0.75rem}
+.p-3{padding:0.75rem}
+.font-semibold{font-weight:600}
+.text-sm{font-size:0.875rem}
+.bg-yellow-400{background:#f6e05e}
+.bg-lime-500{background:#84cc16}
+.text-black{color:#000}
+.rounded{border-radius:0.5rem}
+.mt-2{margin-top:.5rem}
+.mt-4{margin-top:1rem}
+.mb-4{margin-bottom:1rem}
+.w-full{width:100%}
+.rounded-lg{border-radius:.5rem}
+.bg-blue-600{background:#2563eb}
+.bg-lime-500{background:#84cc16}
+.bg-red-600{background:#dc2626}
+.flex{display:flex}
+.flex-col{flex-direction:column}
+.items-center{align-items:center}
+.justify-center{justify-content:center}
+.gap-2{gap:.5rem}
+.p-2{padding:.5rem}
+.p-4{padding:1rem}
+.font-bold{font-weight:700}
+.text-xl{font-size:1.25rem}
+.text-lg{font-size:1.125rem}
+.text-sm{font-size:.875rem}
+.text-xs{font-size:.75rem}
+.hidden{display:none}

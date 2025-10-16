@@ -1,0 +1,20 @@
+{
+  "name": "ai-antonios-intelligence",
+  "version": "1.0.0",
+  "description": "AI Antonio's Intelligence - Where Magic Happens - Pisces-centered music coaching platform",
+  "scripts": {
+    "deploy": "vercel --prod",
+    "dev": "vercel dev"
+  },
+  "dependencies": {
+    "firebase": "^10.14.1"
+  },
+  "keywords": [
+    "antonios-intelligence",
+    "pisces",
+    "music-coaching",
+    "creative-flow"
+  ],
+  "author": "Antonio (Pisces Intelligence)",
+  "license": "MIT"
+}

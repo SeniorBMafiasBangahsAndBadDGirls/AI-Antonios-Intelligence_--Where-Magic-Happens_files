@@ -1,467 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI ANTONIOS INTELIGENCE</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
-    <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #1f1b0a; /* Dark gold/brown background */
-            color: #e0e0e0;
-            overflow: hidden; /* Prevent body scroll */
-            display: flex;
-        }
-        .sidebar {
-            background-color: rgba(60, 50, 20, 0.5); /* Semi-transparent background */
-            backdrop-filter: blur(10px);
-            width: 150px; /* Smaller default width */
-            height: 100vh;
-            overflow-y: auto;
-            padding: 1rem;
-            border-left: 2px solid #a67c00;
-            position: fixed;
-            right: 0;
-            top: 0;
-            z-index: 10;
-            transition: width 0.3s ease-in-out;
-        }
-        .sidebar:hover {
-            width: 450px; /* Expand on hover */
-        }
-        .card {
-            background-color: rgba(80, 70, 30, 0.7); /* Semi-transparent card */
-            border-radius: 1rem;
-            padding: 1rem;
-            margin-top: 1rem;
-            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.2);
-            border: 1px solid #b58c00;
-        }
-        input, button, select {
-            background-color: #3d3419;
-            border: 1px solid #a67c00;
-            color: #e0e0e0;
-            padding: 0.75rem 1rem;
-            border-radius: 0.5rem;
-            margin: 0.5rem 0;
-            width: 100%;
-            transition: all 0.3s ease;
-        }
-        input:focus, button:focus, select:focus {
-            outline: none;
-            border-color: #ffc400;
-            box-shadow: 0 0 0 3px rgba(255, 196, 0, 0.5);
-        }
-        button {
-            cursor: pointer;
-            background: linear-gradient(45deg, #ffc400, #e6b800);
-            border: none;
-            color: #1f1b0a;
-        }
-        button:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-        }
-        .video-js {
-            margin: 0 auto;
-            border-radius: 1rem;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            border: 2px solid #b58c00;
-        }
-        .avatar {
-            width: 150px;
-            height: 150px;
-            margin: 0.5rem;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid #e6b800;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        }
-        .file-upload-container {
-            border: 2px dashed #a67c00;
-            border-radius: 1rem;
-            padding: 1rem;
-            margin-top: 1rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .file-upload-container label {
-            cursor: pointer;
-            background-color: #a67c00;
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            transition: background-color 0.3s ease;
-        }
-        .file-upload-container label:hover {
-            background-color: #ffc400;
-        }
-        .hidden {
-            display: none;
-        }
-        .message-box {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #1e1e3f;
-            color: white;
-            padding: 2rem;
-            border-radius: 1rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            display: none;
-            text-align: center;
-        }
-        .chat-container {
-            background-color: #2b2b2b;
-            border-radius: 1rem;
-            height: 400px;
-            overflow-y: scroll;
-            padding: 1rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-        .chat-message {
-            max-width: 80%;
-            padding: 0.75rem;
-            border-radius: 0.75rem;
-						display: flex;
-            align-items: center;
-        }
-        .user-message {
-            background-color: #8c6f1a;
-            align-self: flex-end;
-            text-align: right;
-        }
-        .ai-message {
-            background-color: #4f4520;
-            align-self: flex-start;
-            text-align: left;
-        }
-        .zodiac-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #1f1b0a;
-            overflow: hidden;
-            z-index: -1;
-        }
-        .zodiac-container video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .bad-d-girl-status {
-            background-color: #3d3419;
-            border-radius: 1rem;
-            padding: 1.5rem;
-            margin-top: 1.5rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            border: 1px solid #a67c00;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .bad-d-girl-status .avatar {
-            border-color: #e6b800;
-            filter: grayscale(100%);
-        }
-        .bad-d-girl-status.approved .avatar {
-            border-color: #ffc400;
-            filter: none;
-        }
-        .badge {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            font-size: 0.75rem;
-            font-weight: bold;
-            margin-top: 0.5rem;
-        }
-        .status-waiting { background-color: #e6b800; color: black; }
-        .status-approved { background-color: #ffc400; color: black; }
-    </style>
-</head>
-<body>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI ANTONIOS INTELLIGENCE - Where Magic Happens</title>
 
-    <!-- Full-screen video background -->
-    <div id="video-background" class="zodiac-container">
-        <video id="localVideo" autoplay playsinline></video>
-    </div>
+  <!-- Tailwind CSS -->
+  <link href="dist/output.css" rel="stylesheet">
 
-    <!-- Main content container as an overlay sidebar -->
-    <main class="sidebar">
-        <div id="app-content">
-            <p id="prompt-message" class="text-xl font-bold mb-4 text-center">Please approve camera and microphone permissions to begin.</p>
-            
-            <div class="flex flex-wrap items-start justify-center gap-6 mb-6">
-                <div class="flex flex-col items-center">
-                    <img id="user-avatar" class="avatar" src="https://placehold.co/150x150/5a4b8a/ffffff?text=Pisces+Ghost" alt="Pisces Ghost's Avatar">
-                    <p class="mt-2 text-xl font-bold" id="user-name-display">Pisces Ghost</p>
-                    <p class="text-sm text-gray-400" id="zodiac-sign-display">Zodiac Sign: Pisces Ghost</p>
-                    <button id="generate-avatar-btn" class="text-sm mt-2 p-2 rounded-lg bg-purple-600 hover:bg-purple-700">✨ Generate New Look</button>
-                </div>
-                <div class="flex flex-col items-center">
-                    <img id="bad-d-girl-avatar" class="avatar" src="https://placehold.co/150x150/7c3aed/ffffff?text=BadDGirl" alt="BadDGirl's Avatar">
-                    <p class="mt-2 text-xl font-bold">BadDGirl</p>
-                    <p class="text-sm text-gray-400">The First Lady</p>
-                </div>
-                <div class="flex flex-col items-center">
-                    <img id="producer-avatar" class="avatar" src="https://placehold.co/150x150/a67c00/ffffff?text=Producer" alt="Producer's Avatar">
-                    <p class="mt-2 text-xl font-bold">Antonio Roschelle Yarbough (SR TTEE)
-                    <p class="text-sm text-gray-400">The Producer</p>
-                </div>
-            </div>
-            <p class="text-xs text-gray-500 my-2">Your User ID: <span id="user-id-display" class="font-mono text-xs"></span></p>
+  <!-- Video.js -->
+  <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
+  <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
 
-            <!-- Zodiac Signs Section -->
-            <div id="zodiac-section" class="card mt-6">
-                <h2 class="text-2xl font-bold mb-4 text-center">The Zodiac Council</h2>
-                <div class="grid grid-cols-3 sm:grid-cols-4 gap-4 text-center">
-                    <!-- Aries -->
-                    <div class="flex flex-col items-center">
-                        <img src="https://placehold.co/100x100/ff4500/ffffff?text=Aries" alt="Aries" class="avatar w-20 h-20">
-                        <p class="mt-2 font-semibold text-sm">Aries</p>
-                    </div>
-                    <!-- Taurus -->
-                    <div class="flex flex-col items-center">
-                        <img src="https://placehold.co/100x100/228B22/ffffff?text=Taurus" alt="Taurus" class="avatar w-20 h-20">
-                        <p class="mt-2 font-semibold text-sm">Taurus</p>
-                    </div>
-                    <!-- Gemini -->
-                    <div class="flex flex-col items-center">
-                        <img src="https://placehold.co/100x100/ffd700/ffffff?text=Gemini" alt="Gemini" class="avatar w-20 h-20">
-                        <p class="mt-2 font-semibold text-sm">Gemini</p>
-                    </div>
-                    <!-- Cancer -->
-                    <div class="flex flex-col items-center">
-                        <img src="https://placehold.co/100x100/c0c0c0/ffffff?text=Cancer" alt="Cancer" class="avatar w-20 h-20">
-                        <p class="mt-2 font-semibold text-sm">Cancer</p>
-                    </div>
-                    <!-- Leo -->
-                    <div class="flex flex-col items-center">
-                        <img src="https://placehold.co/100x100/ff8c00/ffffff?text=Leo" alt="Leo" class="avatar w-20 h-20">
-                        <p class="mt-2 font-semibold text-sm">Leo</p>
-                    </div>
-                    <!-- Virgo -->
-                    <div class="flex flex-col items-center">
-                        <img src="https://placehold.co/100x100/9acd32/ffffff?text=Virgo" alt="Virgo" class="avatar w-20 h-20">
-                        <p class="mt-2 font-semibold text-sm">Virgo</p>
-                    </div>
-                    <!-- Libra -->
-                    <div class="flex flex-col items-center">
-                        <img src="https://placehold.co/100x100/ff69b4/ffffff?text=Libra" alt="Libra" class="avatar w-20 h-20">
-                        <p class="mt-2 font-semibold text-sm">Libra</p>
-                    </div>
-                    <!-- Scorpio -->
-                    <div class="flex flex-col items-center">
-                        <img src="https://placehold.co/100x100/800000/ffffff?text=Scorpio" alt="Scorpio" class="avatar w-20 h-20">
-                        <p class="mt-2 font-semibold text-sm">Scorpio</p>
-                    </div>
-                    <!-- Sagittarius -->
-                    <div class="flex flex-col items-center">
-                        <img src="https://placehold.co/100x100/4b0082/ffffff?text=Sagittarius" alt="Sagittarius" class="avatar w-20 h-20">
-                        <p class="mt-2 font-semibold text-sm">Sagittarius</p>
-                    </div>
-                    <!-- Capricorn -->
-                    <div class="flex flex-col items-center">
-                        <img src="https://placehold.co/100x100/696969/ffffff?text=Capricorn" alt="Capricorn" class="avatar w-20 h-20">
-                        <p class="mt-2 font-semibold text-sm">Capricorn</p>
-                    </div>
-                    <!-- Aquarius -->
-                    <div class="flex flex-col items-center">
-                        <img src="https://placehold.co/100x100/00bfff/ffffff?text=Aquarius" alt="Aquarius" class="avatar w-20 h-20">
-                        <p class="mt-2 font-semibold text-sm">Aquarius</p>
-                    </div>
-                    <!-- Pisces -->
-                    <div class="flex flex-col items-center">
-                        <img src="https://placehold.co/100x100/4169e1/ffffff?text=Pisces" alt="Pisces" class="avatar w-20 h-20">
-                        <p class="mt-2 font-semibold text-sm">Pisces</p>
-                    </div>
-                </div>
-            </div>
+    <!-- Cropper.js (for client-side cropping) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
 
-            <!-- Beat Purchase Section -->
-            <div id="beat-purchase-section" class="card">
-                <h2 class="text-2xl font-bold mb-4">Beats for Sale</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="bg-purple-800 p-4 rounded-lg flex flex-col justify-between">
-                        <h3 class="font-bold text-xl">The Raydiant Beat</h3>
-                        <p class="text-gray-300">A classic, hard-hitting MPC beat.</p>
-                        <button id="purchase-beat-btn" class="mt-4 bg-lime-500 hover:bg-lime-600 text-white font-bold py-2 px-4 rounded-lg">
-                            Purchase to Unlock
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <div id="studio-section">
-                <div class="card">
-                    <h2 class="text-2xl font-bold mb-4">AI ANTONIOS INTELIGENCE</h2>
-                    <h3 class="text-lg text-gray-400">The AI Twin Pisces Ghost</h3>
-                    <div class="mt-4">
-                        <p id="beat-name" class="text-sm text-gray-400 mb-2">Now Playing: Not Loaded</p>
-                        <video id="customPlayer" class="video-js vjs-default-skin w-full rounded-xl" controls preload="auto" data-setup='{}'></video>
-                    </div>
-                </div>
-
-                <!-- BadDGirl Waiting to Enter Section -->
-                <div id="baddgirl-status-section" class="bad-d-girl-status">
-                    <img id="baddgirl-avatar" class="avatar" src="https://placehold.co/150x150/7c3aed/ffffff?text=BadDGirl" alt="BadDGirl's Avatar">
-                    <p class="mt-2 text-xl font-bold">BadDGirl</p>
-                    <span id="baddgirl-status" class="badge status-waiting">Waiting to Enter...</span>
-                    <button id="approve-baddgirl-btn" class="mt-4 bg-lime-500 hover:bg-lime-600 text-white font-bold py-2 px-4 rounded-lg">
-                        Approve BadDGirl
-                    </button>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- File Uploads and Master Purchase Section -->
-                    <div class="card">
-                        <h2 class="text-2xl font-bold mb-4">Record & Master</h2>
-                        <div class="flex space-x-2 mt-4">
-                            <button id="record-btn" class="flex-1 bg-red-600 hover:bg-red-700">Record</button>
-                            <button id="stop-record-btn" class="flex-1 bg-gray-500 hover:bg-gray-600" disabled>Stop</button>
-                        </div>
-                        <div id="recording-playback" class="hidden mt-4">
-                            <h3 class="text-md font-bold mb-2">Your Recording</h3>
-                            <audio id="recording-player" controls class="w-full"></audio>
-                            <a id="save-recording-btn" class="mt-2 block w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg" download="my-recording.webm">Save Recording</a>
-                        </div>
-                        <div class="file-upload-container">
-                            <label for="beat-upload">Upload MPC Beat</label>
-                            <input type="file" id="beat-upload" accept="audio/*" class="hidden">
-                        </div>
-                        <p class="my-4 text-sm text-gray-300">Purchase the final master for distribution:</p>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                            <button id="purchase-mp3-wav" class="bg-purple-600 hover:bg-purple-700">Buy Master MP3/WAV</button>
-                            <button id="purchase-mp4" class="bg-pink-600 hover:bg-pink-700">Buy Master MP4 (Subscription)</button>
-                        </div>
-                        <img id="raydiant-seal" src="GERTIFIED AI SBM SEAL.jpg" alt="AI Certified SBM Seal" class="w-24 h-24 mx-auto mt-4" />
-                    </div>
-                </div>
-
-                <p id="rhyme-guidance" class="card mt-6 text-lg text-gray-300">
-                    Your creative energy is now aligned. Alter your rhymes to benefit the people, with the spirit of your sign.
-                </p>
-            </div>
-            
-            <!-- Chat Room for AI Correction -->
-            <div id="chatroom-section" class="card">
-                <h2 class="text-2xl font-bold mb-4">"The Raydiant War" (The AI Twin)</h2>
-                <div class="chat-container mb-4" id="messages-display">
-                    <!-- Chat messages will be rendered here -->
-                </div>
-                <form id="chat-form" class="flex space-x-2">
-                    <input type="text" id="chat-input" placeholder="Drop your rhyme here..." class="flex-grow p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-700">
-                    <button id="generate-rhyme-btn" type="button" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg">✨ Generate Rhyme</button>
-                    <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">Send</button>
-                </form>
-            </div>
-        </div>
-    </main>
-
-    <!-- Message Box -->
-    <div id="message-box" class="message-box">
-        <p id="message-text"></p>
-        <button id="close-message" class="mt-4 px-4 py-2 rounded-lg bg-purple-600">OK</button>
-    </div>
-
-    <!-- Firebase SDKs -->
+  <!-- Firebase SDKs -->
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, setDoc, onSnapshot, collection, addDoc, serverTimestamp, query, orderBy } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-        import { setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-analytics.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+        import { getFirestore, setLogLevel, doc, setDoc, onSnapshot, collection, addDoc, serverTimestamp, query, orderBy } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
+        import { getStorage } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-storage.js";
 
-        setLogLevel('Debug');
+    const firebaseConfig = {
+      apiKey: "AIzaSyBC3jRqiVMdFHONBZwtmpHFj6q-ZF4pKB8",
+      authDomain: "ai-antonios-intelligence.firebaseapp.com",
+      projectId: "ai-antonios-intelligence",
+      storageBucket: "ai-antonios-intelligence.firebasestorage.app",
+      messagingSenderId: "196721251681",
+      appId: "1:196721251681:web:ba15bc86d11619fb73e120",
+      measurementId: "G-50YW86EWCS"
+    };
 
-        // Global Firebase variables
-        const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
-        
-        let db, auth;
-        let userId;
-        let localStream; // To hold the camera stream
+    // Initialize and expose globally
+    window.app = initializeApp(firebaseConfig);
+    window.analytics = getAnalytics(window.app);
+    window.auth = getAuth(window.app);
+    window.db = getFirestore(window.app);
+    window.storage = getStorage(window.app);
 
-        // Recording variables
-        let mediaRecorder;
-        let audioChunks = [];
-        let audioBlob;
+    setLogLevel('debug');
 
-        // Utility function to show a custom message box instead of alert()
-        function showMessage(message) {
-            document.getElementById('message-text').textContent = message;
-            document.getElementById('message-box').style.display = 'block';
-        }
+        window.firebaseConfig = firebaseConfig;
+        window.initializeApp = initializeApp;
+        window.getAuth = getAuth;
+        window.getFirestore = getFirestore;
+        window.onAuthStateChanged = onAuthStateChanged;
+        window.setLogLevel = setLogLevel;
 
-        document.addEventListener('DOMContentLoaded', () => {
-            // Get elements
-            const userAvatar = document.getElementById('user-avatar');
-            const generateAvatarBtn = document.getElementById('generate-avatar-btn');
-            const appContent = document.getElementById('app-content');
-            const userIdDisplay = document.getElementById('user-id-display');
-            const localVideo = document.getElementById('localVideo');
-            const customPlayer = videojs('customPlayer');
-            const purchaseBeatBtn = document.getElementById('purchase-beat-btn');
-            const beatNameDisplay = document.getElementById('beat-name');
-            const messagesDisplay = document.getElementById('messages-display');
-            const chatForm = document.getElementById('chat-form');
-            const chatInput = document.getElementById('chat-input');
-            const generateRhymeBtn = document.getElementById('generate-rhyme-btn');
-            const baddgirlStatus = document.getElementById('baddgirl-status');
-            const approveBaddgirlBtn = document.getElementById('approve-baddgirl-btn');
-            const recordBtn = document.getElementById('record-btn');
-            const stopRecordBtn = document.getElementById('stop-record-btn');
-            const recordingPlayback = document.getElementById('recording-playback');
-            const recordingPlayer = document.getElementById('recording-player');
-            const saveRecordingBtn = document.getElementById('save-recording-btn');
-
-            // Close message box
-            document.getElementById('close-message').addEventListener('click', () => {
-                document.getElementById('message-box').style.display = 'none';
-            });
-            
-            // Initialize Firebase on page load
-            if (Object.keys(firebaseConfig).length) {
-                const app = initializeApp(firebaseConfig);
-                db = getFirestore(app);
-                auth = getAuth(app);
-                
-                onAuthStateChanged(auth, async (user) => {
-                    if (!user) {
-                        try {
-                            if (initialAuthToken) {
-                                await signInWithCustomToken(auth, initialAuthToken);
-                            } else {
-                                await signInAnonymously(auth);
-                            }
-                        } catch (error) {
-                            console.error("Firebase Auth Error:", error);
-                        }
-                    }
-                    userId = auth.currentUser?.uid || crypto.randomUUID();
-                    if(userIdDisplay) userIdDisplay.textContent = userId;
-                    setupRealtimeListeners();
-                });
-            }
-
-            function setupRealtimeListeners() {
-                if (!userId || !db) return;
+        // Expose commonly used Firestore helpers so inline scripts can use them
+        window.doc = doc;
+        window.setDoc = setDoc;
+        window.onSnapshot = onSnapshot;
+        window.collection = collection;
+        window.addDoc = addDoc;
+        window.serverTimestamp = serverTimestamp;
+        window.query = query;
+        window.orderBy = orderBy;
+  </script>
+    <script>
                 // Listen for user's beat purchases
                 const userPurchaseDoc = doc(db, 'artifacts', appId, 'users', userId, 'purchases', 'beat_purchase');
                 onSnapshot(userPurchaseDoc, (docSnap) => {
@@ -533,8 +132,30 @@
                 });
             }
             
-            // Start camera automatically on page load
-            startCamera();
+            // Insert an Enable Camera button to trigger camera start via user gesture
+            const promptContainer = document.getElementById('prompt-message');
+            const enableCamBtn = document.createElement('button');
+            enableCamBtn.id = 'enable-camera-btn';
+            enableCamBtn.className = 'mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg';
+            enableCamBtn.textContent = 'Enable Camera';
+            enableCamBtn.setAttribute('aria-label', 'Enable camera and microphone');
+            promptContainer.parentNode.insertBefore(enableCamBtn, promptContainer.nextSibling);
+
+            // Call startCamera only on user gesture (click) to improve autoplay success and permissions
+            enableCamBtn.addEventListener('click', async () => {
+                enableCamBtn.disabled = true;
+                enableCamBtn.textContent = 'Connecting...';
+                await startCamera();
+                enableCamBtn.style.display = 'none';
+            });
+
+            // Camera retry button wiring
+            const cameraRetryBtn = document.getElementById('camera-retry-btn');
+            cameraRetryBtn.addEventListener('click', async () => {
+                cameraRetryBtn.disabled = true;
+                cameraRetryBtn.textContent = 'Retrying...';
+                await startCamera();
+            });
 
             // Stop camera stream when the page is unloaded to release the device
             window.addEventListener('beforeunload', () => {
@@ -571,7 +192,7 @@
                         contents: [{ parts: [{ text: prompt }] }],
                     };
 
-                    const apiKey = "";
+                    const apiKey = "YOUR_ACTUAL_GEMINI_API_KEY_HERE"; // ← Fix this
                     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
 
                     let attempts = 0;
@@ -650,14 +271,6 @@
                 const buffer = new ArrayBuffer(44 + dataSize);
                 const view = new DataView(buffer);
                 writeString(view, 0, 'RIFF');
-                view.setUint32(4, 36 + dataSize, true);
-                writeString(view, 8, 'WAVE');
-                writeString(view, 12, 'fmt ');
-                view.setUint32(16, 16, true);
-                view.setUint16(20, 1, true); // PCM
-                view.setUint16(22, numChannels, true);
-                view.setUint32(24, sampleRate, true);
-                view.setUint32(28, byteRate, true);
                 view.setUint16(32, blockAlign, true);
                 view.setUint16(34, 16, true); // 16-bits per sample
                 writeString(view, 36, 'data');
@@ -827,31 +440,62 @@ document.getElementById('beat-upload').addEventListener('change', (e) => {
     }
 });
 // ...existing code...       // ** Camera and BadDGirl approval functionality **
-            function startCamera() {
+            async function startCamera() {
+                const promptMessage = document.getElementById('prompt-message');
+                const statusText = document.getElementById('camera-status-text');
+                const retryBtn = document.getElementById('camera-retry-btn');
+
+                promptMessage.textContent = "Attempting to connect to camera...";
+                if (statusText) statusText.textContent = 'Camera status: connecting...';
+                if (retryBtn) retryBtn.classList.add('hidden');
+
                 // Stop any existing stream before starting a new one
                 if (localStream) {
-                    localStream.getTracks().forEach(track => track.stop());
+                    try { localStream.getTracks().forEach(track => track.stop()); } catch (e) { console.warn('Error stopping previous stream', e); }
+                    localStream = null;
                     console.log("Stopped existing camera stream.");
                 }
 
-                navigator.mediaDevices.getUserMedia({ video: true })
-                    .then(stream => {
-                        localStream = stream; // Store the stream
-                        localVideo.srcObject = stream;
-                        console.log("Camera stream started.");
-                    })
-                    .catch(err => {
-                        console.error("Error accessing the camera:", err);
-                        let errorMessage = "Could not access your camera. Please check your browser permissions.";
-                        if (err.name === 'NotAllowedError') {
-                            errorMessage = "Camera access was denied. Please allow camera access in your browser settings.";
-                        } else if (err.name === 'NotFoundError') {
-                            errorMessage = "No camera was found on your device.";
-                        } else if (err.name === 'NotReadableError' || err.message.toLowerCase().includes('device in use')) {
-                            errorMessage = "Your camera may be in use by another application or browser tab. Please close any other programs using the camera and refresh the page.";
-                        }
-                        showMessage(errorMessage);
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({
+                        video: { width: { ideal: 1280 }, height: { ideal: 720 } },
+                        audio: false
                     });
+
+                    localStream = stream;
+                    if (localVideo) {
+                        localVideo.srcObject = stream;
+                        try { await localVideo.play(); } catch (playErr) { console.debug('Autoplay prevented, user gesture required to start video playback', playErr); }
+                    }
+
+                    promptMessage.textContent = "Camera connected successfully!";
+                    if (statusText) statusText.textContent = 'Camera status: connected';
+                    if (retryBtn) { retryBtn.classList.add('hidden'); }
+                    console.log("Camera stream started.");
+                } catch (err) {
+                    console.error("Error accessing the camera:", err);
+                    let errorMessage = "Could not access your camera. Please check your browser permissions.";
+                    if (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError') {
+                        errorMessage = "Camera access was denied. Please allow camera access in your browser settings.";
+                        promptMessage.textContent = "Camera access denied. Please check your browser settings.";
+                    } else if (err.name === 'NotFoundError' || err.name === 'DevicesNotFoundError') {
+                        errorMessage = "No camera was found on your device.";
+                        promptMessage.textContent = "No camera detected.";
+                    } else if (err.name === 'NotReadableError' || (err.message && err.message.toLowerCase().includes('device in use'))) {
+                        errorMessage = "Your camera may be in use by another application or browser tab. Please close other programs using the camera and try again.";
+                        promptMessage.textContent = "Camera in use by another app.";
+                    } else {
+                        promptMessage.textContent = "Camera error. Please check your settings.";
+                    }
+
+                    if (statusText) statusText.textContent = `Camera status: error - ${errorMessage}`;
+                    if (retryBtn) {
+                        retryBtn.classList.remove('hidden');
+                        retryBtn.disabled = false;
+                        retryBtn.textContent = 'Retry Camera';
+                    }
+                    showMessage(errorMessage);
+                }
             }
             
             approveBaddgirlBtn.addEventListener('click', async () => {
@@ -870,10 +514,13 @@ document.getElementById('beat-upload').addEventListener('change', (e) => {
             });
             
             // ** Recording functionality **
+            let audioStream = null; // separate audio stream so it doesn't interfere with camera
+
             recordBtn.addEventListener('click', async () => {
                 try {
-                    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-                    mediaRecorder = new MediaRecorder(stream);
+                    // Request only audio
+                    audioStream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+                    mediaRecorder = new MediaRecorder(audioStream);
                     audioChunks = [];
 
                     mediaRecorder.ondataavailable = event => {
@@ -883,13 +530,16 @@ document.getElementById('beat-upload').addEventListener('change', (e) => {
                     mediaRecorder.onstop = () => {
                         audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
                         const audioUrl = URL.createObjectURL(audioBlob);
-                        
+
                         recordingPlayer.src = audioUrl;
                         recordingPlayback.classList.remove('hidden');
                         saveRecordingBtn.href = audioUrl;
-                        
-                        // Stop all tracks in the stream to turn off the mic indicator
-                        stream.getTracks().forEach(track => track.stop());
+
+                        // Stop just the audio tracks for this recording stream
+                        if (audioStream) {
+                            try { audioStream.getTracks().forEach(track => track.stop()); } catch(e){ console.warn('Failed to stop audioStream tracks', e); }
+                            audioStream = null;
+                        }
                     };
 
                     mediaRecorder.start();
@@ -905,7 +555,7 @@ document.getElementById('beat-upload').addEventListener('change', (e) => {
                     showMessage("Could not access your microphone. Please check your browser permissions.");
                 }
             });
-            
+
             stopRecordBtn.addEventListener('click', () => {
                 if (mediaRecorder && mediaRecorder.state !== 'inactive') {
                     mediaRecorder.stop();
@@ -929,7 +579,8 @@ document.getElementById('beat-upload').addEventListener('change', (e) => {
                 showMessage("MP4 purchased! Welcome to the AI ANTONIOS INTELIGENCE SeniorBMafias Bangahs&BadDGirls enterprize.");
             });
         });
-    </script>
+</script>
+    <!-- Load main app module -->
+    <script type="module" src="/src/main-module.js"></script>
 </body>
 </html>
-<mat-icon _ngcontent-ng-c3534780049="" role="img" fonticon="button_magic" class="mat-icon notranslate gds-icon-l google-symbols mat-ligature-font mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font" data-mat-icon-name="button_magic"></mat-icon>

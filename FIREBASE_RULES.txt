@@ -1,0 +1,48 @@
+# Suggested Firebase Security Rules
+
+# Firestore rules: allow read to public data (zodiac_icons, zodiac_styles) but restrict writes to authenticated users
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /artifacts/{appId}/public/data/{doc=**} {
+      allow read: if true;
+      allow write: if request.auth != null && request.auth.uid != null;
+    }
+
+    // Users' private data (purchases etc.)
+    match /artifacts/{appId}/users/{userId}/{subcollections=**} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
+
+# Storage rules: avatars and zodiac_icons should be writable only by authenticated users
+service firebase.storage {
+  match /b/{bucket}/o {
+    // avatars bucket
+    match /avatars/{allPaths=**} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+
+    // zodiac icons
+    match /zodiac_icons/{allPaths=**} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+
+    // default deny
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}
+
+# Notes:
+# - Adjust rules to tighten access (e.g., enforce role-based writes) in production.
+# - Use Firebase App Check to protect backend resources from abuse.
+# - Monitor storage and firestore usage and configure appropriate quotas and monitoring.

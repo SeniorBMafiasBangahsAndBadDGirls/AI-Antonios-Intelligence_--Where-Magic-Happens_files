@@ -1,0 +1,320 @@
+{
+  "timestamp": 1760267498580,
+  "data": {
+    "metadata": {
+      "scannedFiles": 8,
+      "processedFiles": 8,
+      "errorCount": 0,
+      "skippedFiles": 0,
+      "generatedAt": "2025-10-12T11:11:38.570Z",
+      "version": "2.0.0",
+      "config": {
+        "patterns": [
+          "**/*.{js,ts,tsx,jsx,css,html}",
+          "**/*.vue",
+          "**/*.svelte"
+        ],
+        "ignore": [
+          "**/node_modules/**",
+          "**/dist/**",
+          "**/build/**",
+          "**/.git/**",
+          "**/coverage/**",
+          "**/.next/**",
+          "**/out/**"
+        ],
+        "performance": {
+          "maxFileSize": 1048576,
+          "concurrentFiles": 10,
+          "cacheResults": true
+        }
+      }
+    },
+    "detected": [
+      {
+        "feature": "CSS Nesting",
+        "files": [
+          "RotateCookiesPage.html",
+          "index.html",
+          "saved_resource.html"
+        ],
+        "count": 3
+      },
+      {
+        "feature": "Web Components",
+        "files": [
+          "RotateCookiesPage.html",
+          "bscframe.html",
+          "index.html",
+          "saved_resource(1).html",
+          "saved_resource.html"
+        ],
+        "count": 5
+      },
+      {
+        "feature": "Template Element",
+        "files": [
+          "RotateCookiesPage.html",
+          "bscframe.html",
+          "saved_resource(1).html",
+          "saved_resource.html"
+        ],
+        "count": 4
+      },
+      {
+        "feature": "ARIA Attributes",
+        "files": [
+          "RotateCookiesPage.html",
+          "bscframe.html",
+          "editor.main.css",
+          "index.html",
+          "saved_resource(1).html",
+          "saved_resource.html"
+        ],
+        "count": 6
+      },
+      {
+        "feature": "Focus Management",
+        "files": [
+          "RotateCookiesPage.html",
+          "bscframe.html",
+          "editor.main.css",
+          "index.html",
+          "saved_resource(1).html",
+          "saved_resource.html",
+          "video-js.css"
+        ],
+        "count": 7
+      },
+      {
+        "feature": "CSS Custom Properties (advanced)",
+        "files": [
+          "all.min.css",
+          "editor.main.css",
+          "saved_resource.html"
+        ],
+        "count": 3
+      },
+      {
+        "feature": "CSS Math Functions",
+        "files": [
+          "all.min.css",
+          "editor.main.css",
+          "saved_resource.html"
+        ],
+        "count": 3
+      },
+      {
+        "feature": "Private Fields",
+        "files": [
+          "all.min.css",
+          "editor.main.css",
+          "index.html",
+          "saved_resource.html",
+          "video-js.css"
+        ],
+        "count": 5
+      },
+      {
+        "feature": "css.custom_properties",
+        "files": [
+          "all.min.css",
+          "editor.main.css",
+          "saved_resource.html"
+        ],
+        "count": 3
+      },
+      {
+        "feature": "CSS Flexbox (advanced)",
+        "files": [
+          "editor.main.css",
+          "index.html",
+          "saved_resource.html"
+        ],
+        "count": 3
+      },
+      {
+        "feature": "CSS Logical Properties",
+        "files": [
+          "editor.main.css",
+          "saved_resource.html"
+        ],
+        "count": 2
+      },
+      {
+        "feature": "Web App Manifest",
+        "files": [
+          "editor.main.css",
+          "index.html",
+          "saved_resource.html",
+          "video-js.css"
+        ],
+        "count": 4
+      },
+      {
+        "feature": "Color Contrast",
+        "files": [
+          "editor.main.css",
+          "index.html",
+          "saved_resource.html",
+          "video-js.css"
+        ],
+        "count": 4
+      },
+      {
+        "feature": "css.has_pseudo",
+        "files": [
+          "editor.main.css"
+        ],
+        "count": 1
+      },
+      {
+        "feature": "css.grid",
+        "files": [
+          "editor.main.css",
+          "video-js.css"
+        ],
+        "count": 2
+      },
+      {
+        "feature": "css.flexbox",
+        "files": [
+          "editor.main.css",
+          "index.html",
+          "saved_resource.html",
+          "video-js.css"
+        ],
+        "count": 4
+      },
+      {
+        "feature": "css.logical_properties",
+        "files": [
+          "editor.main.css",
+          "saved_resource.html"
+        ],
+        "count": 2
+      },
+      {
+        "feature": "Video/Audio Elements (advanced)",
+        "files": [
+          "index.html"
+        ],
+        "count": 1
+      },
+      {
+        "feature": "Semantic HTML",
+        "files": [
+          "index.html"
+        ],
+        "count": 1
+      },
+      {
+        "feature": "Optional Chaining",
+        "files": [
+          "index.html"
+        ],
+        "count": 1
+      },
+      {
+        "feature": "Top-level Await",
+        "files": [
+          "index.html"
+        ],
+        "count": 1
+      },
+      {
+        "feature": "Logical Assignment",
+        "files": [
+          "index.html",
+          "saved_resource.html"
+        ],
+        "count": 2
+      },
+      {
+        "feature": "Alt Text",
+        "files": [
+          "index.html",
+          "saved_resource.html"
+        ],
+        "count": 2
+      },
+      {
+        "feature": "Form Labels",
+        "files": [
+          "index.html"
+        ],
+        "count": 1
+      },
+      {
+        "feature": "window.fetch",
+        "files": [
+          "index.html"
+        ],
+        "count": 1
+      },
+      {
+        "feature": "URL.createObjectURL",
+        "files": [
+          "index.html"
+        ],
+        "count": 1
+      },
+      {
+        "feature": "Optional chaining",
+        "files": [
+          "index.html"
+        ],
+        "count": 1
+      },
+      {
+        "feature": "Top-level await",
+        "files": [
+          "index.html"
+        ],
+        "count": 1
+      },
+      {
+        "feature": "css.backdrop_filter",
+        "files": [
+          "index.html"
+        ],
+        "count": 1
+      },
+      {
+        "feature": "Web Animations API",
+        "files": [
+          "saved_resource.html"
+        ],
+        "count": 1
+      },
+      {
+        "feature": "CSS Container Queries",
+        "files": [
+          "saved_resource.html"
+        ],
+        "count": 1
+      },
+      {
+        "feature": "Service Worker",
+        "files": [
+          "saved_resource.html"
+        ],
+        "count": 1
+      },
+      {
+        "feature": "css.container_queries",
+        "files": [
+          "saved_resource.html"
+        ],
+        "count": 1
+      },
+      {
+        "feature": "css.min_max",
+        "files": [
+          "saved_resource.html"
+        ],
+        "count": 1
+      }
+    ]
+  }
+}
